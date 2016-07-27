@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="81b79301-9952-491b-a48b-541890af4b55" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run-specs.html" afterPath="$PROJECT_DIR$/run-specs.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/run-test.js" afterPath="$PROJECT_DIR$/run-test.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/best-charge-spec.js" afterPath="$PROJECT_DIR$/spec/best-charge-spec.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/best-charge.js" afterPath="$PROJECT_DIR$/src/best-charge.js" />
-    </list>
+    <list default="true" id="81b79301-9952-491b-a48b-541890af4b55" name="Default" comment="" />
     <ignored path="take-out-food.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
