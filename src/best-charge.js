@@ -1,13 +1,18 @@
+/*global require,module*/
+
 'use strict';
 
+let allItems = require('../src/items');
+let promotions = require('../src/promotions');
+
 function bestCharge(selectedItems) {
-  const allItems = loadAllItems();
-  const cartItems = buildCartItems(selectedItems, allItems);
+  const allItem = allItems.loadAllItems();
+  const cartItems = buildCartItems(selectedItems, allItem);
 
   const receiptItems = buildReceiptItems(cartItems);
 
-  const promotions  = loadPromotions();
-  const receipt = buildReceipt(receiptItems,promotions);
+  const promotion = promotions.loadPromotions();
+  const receipt = buildReceipt(receiptItems, promotion);
 
   const receiptText = buildReceiptText(receipt);
 
@@ -19,12 +24,12 @@ function buildCartItems(tags, allItems) {
 
   for (let tag of tags) {
     const splittedTags = tag.split(' x ');
+
     for (let allItem of allItems) {
       if (allItem.id === splittedTags[0]) {
         cartItems.push({
           id: allItem.id,
           name: allItem.name,
-          price: allItem.price,
           count: parseInt(splittedTags[1]),
           subtotal: allItem.price * parseInt(splittedTags[1])
         });
@@ -69,7 +74,7 @@ function discount(receiptItem, promotions) {
   for (let cartItem of receiptItem.cartItem) {
     for (let item of promotions[1].items) {
       if (item === cartItem.id) {
-        receiptItem.total -= (cartItem.price / 2) * (cartItem.count);
+        receiptItem.total -= cartItem.subtotal / 2;
         items.push(cartItem.name);
       }
     }
@@ -88,7 +93,7 @@ function buildReceiptText(receipt) {
 `;
 
   for (let cartItem of receipt.cartItem) {
-    receiptText += `${cartItem.name} x ${cartItem.count} = ${cartItem.price * cartItem.count}元
+    receiptText += `${cartItem.name} x ${cartItem.count} = ${cartItem.subtotal}元
 `;
   }
 
@@ -112,8 +117,18 @@ function buildReceiptText(receipt) {
     }
 
   }
-receiptText += `总计：${receipt.total}元
+  receiptText += `总计：${receipt.total}元
 ===================================`;
-  
-return receiptText;
+
+  return receiptText;
 }
+
+module.exports = {
+  bestCharge:bestCharge,
+  loadAllItems:allItems.loadAllItems,
+  buildCartItems:buildCartItems,
+  buildReceiptItems:buildReceiptItems,
+  loadPromotions:promotions.loadPromotions,
+  buildReceipt:buildReceipt,
+  buildReceiptText:buildReceiptText
+};
