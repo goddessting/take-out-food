@@ -10,7 +10,7 @@ jasmine.loadConfig({
   random: false
 });
 
-// A 3rd-party reporter
+//A 3rd-party reporter
 var JasmineConsoleReporter = require('jasmine-console-reporter');
 var reporter = new JasmineConsoleReporter({
   colors: 1,           // (0|false)|(1|true)|2
